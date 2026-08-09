@@ -1,0 +1,5 @@
+production:
+  dialect: mysql
+  datasource: gameapp_user:gameapp_pass@tcp(localhost:3306)/gameapp?parseTime=true
+  dir: repository/mysql/migrations
+  table: migrations
