@@ -11,10 +11,14 @@ require (
 	golang.org/x/crypto v0.54.0
 )
 
-require github.com/rubenv/sql-migrate v1.8.1
+require (
+	github.com/go-ozzo/ozzo-validation/v4 v4.4.1
+	github.com/rubenv/sql-migrate v1.8.1
+)
 
 require (
 	filippo.io/edwards25519 v1.2.0 // indirect
+	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/go-gorp/gorp/v3 v3.1.0 // indirect
 	github.com/labstack/gommon v0.5.0 // indirect
 	github.com/mattn/go-colorable v0.1.15 // indirect

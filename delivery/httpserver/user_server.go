@@ -1,6 +1,7 @@
 package httpserver
 
 import (
+	"gameapp/dto"
 	"gameapp/pkg/httpmsg"
 	"gameapp/service/userservice"
 
@@ -10,15 +11,22 @@ import (
 )
 
 func (s Server) userRegister(c echo.Context) error {
-
-	var Req userservice.RegisterRequest
+	var Req dto.RegisterRequest
 	if err := c.Bind(&Req); err != nil {
 		return echo.NewHTTPError(http.StatusBadRequest)
 	}
 
+	if fieldErrors, err := s.userValidator.ValidateRegisterRequest(Req); err != nil {
+		msg, code := httpmsg.Error(err)
+		return c.JSON(code, echo.Map{
+			"message": msg,
+			"errors": fieldErrors,
+		})
+	}
+
 	res, err := s.userSvc.Register(Req)
 	if err != nil {
-		return  echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
 	}	
 
 	return c.JSON(http.StatusCreated, res)
