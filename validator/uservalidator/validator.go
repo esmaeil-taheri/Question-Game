@@ -70,7 +70,7 @@ func (v Validator) ValidateRegisterRequest(req dto.RegisterRequest) (map[string]
 		validation.Field(&req.Password, validation.Required, validation.Match(regexp.MustCompile("^[a-zA-Z0-9!@#$%^&*]{8,}$"))),
 		validation.Field(
 			&req.PhoneNumber, validation.Required, 
-			validation.Match(regexp.MustCompile("^09[0-9]{9}$")), validation.By(v.checkPhoneNumberUniqueness)),
+			validation.Match(regexp.MustCompile("^09[0-9]{9}$")).Error("phone number is not valid"), validation.By(v.checkPhoneNumberUniqueness)),
 	); err != nil {
 		fieldErrors := make(map[string]string)
 
