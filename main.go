@@ -5,7 +5,7 @@ import (
 
 	"gameapp/config"
 	"gameapp/delivery/httpserver"
-	"gameapp/repository/migrator"
+	// "gameapp/repository/migrator"
 	"gameapp/repository/mysql"
 	"gameapp/service/authservice"
 	"gameapp/service/userservice"
